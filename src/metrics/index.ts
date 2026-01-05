@@ -30,6 +30,8 @@ export const metricsMiddleware = (
       },
       duration
     );
+
+    activeRequestsGauge.dec()
   });
   next()
 };

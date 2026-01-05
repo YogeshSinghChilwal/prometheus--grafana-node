@@ -1,7 +1,21 @@
 services:
-  my-app:
+  nodejs-app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - 8080:8080
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./:/etc/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
